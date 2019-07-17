@@ -1,6 +1,6 @@
 package com.haizhi.mock.data.controller;
 
-import com.haizhi.mock.data.executor.MockDataExecutor;
+import com.haizhi.mock.data.framework.executor.MockDataExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,13 +20,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class WarnSignalController {
 
     @Autowired
-    @Qualifier("warnSignalJobExecutor")
-    private MockDataExecutor warnSignalJobExecutor;
+    @Qualifier("publicWarnSignalMockDataExecutor")
+    private MockDataExecutor publicWarnSignalMockDataExecutor;
 
+    @Autowired
+    @Qualifier("privateWarnSignalMockDataExecutor")
+    private MockDataExecutor privateWarnSignalMockDataExecutor;
 
-    @RequestMapping("/mockData")
-    public void mockData(@RequestParam Integer totalMockDataNum) {
-        warnSignalJobExecutor.mockData(totalMockDataNum);
+    @RequestMapping("/mockPublicWarnSignalData")
+    public void mockPublicWarnSignalData(@RequestParam Integer totalMockDataNum, @RequestParam(defaultValue = "false") Boolean truncate) {
+        publicWarnSignalMockDataExecutor.mockData(totalMockDataNum, truncate);
+    }
+
+    @RequestMapping("/mockPrivateWarnSignalData")
+    public void mockPrivateWarnSignalData(@RequestParam Integer totalMockDataNum, @RequestParam(defaultValue = "false") Boolean truncate) {
+        privateWarnSignalMockDataExecutor.mockData(totalMockDataNum, truncate);
     }
 
 }

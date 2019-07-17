@@ -15,5 +15,7 @@ spring:
       connection-test-query: SELECT 1
       idle-timeout: 180000
       maximum-pool-size: 15
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
 
 
