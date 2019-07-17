@@ -4,7 +4,7 @@ package com.haizhi.mock.data.framework.executor;
  * @author xuguoqin
  * @date 2019/7/16 5:54 PM
  */
-public interface MockDataExecutor {
+public interface MockDataExecutor<T> {
 
     /**
      * 构建数据
