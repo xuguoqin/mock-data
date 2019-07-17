@@ -35,8 +35,7 @@
     </insert>
 
     <update id="truncate">
-        truncate table
-        <include refid="table_name"/>
+        truncate table <include refid="table_name"/>
     </update>
 
 
